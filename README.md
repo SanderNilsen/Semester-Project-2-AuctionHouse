@@ -9,5 +9,5 @@ For this project, I have been tasked with developing a fully functional auction 
 * Credit System – Users can earn credits by selling items and spend them on purchases.
 
 ### Technology Stack:
-* Frontend Design: Figma (for wireframing & prototyping)
+* Frontend Design: [Figma](https://www.figma.com/design/AX1ZyCJTAK4SBQInwqgZ6N/Semester-Project-2---Auction-Site?node-id=0-1&t=zdShkMUShuaRUpCk-1) (for wireframing & prototyping)
 * CSS Framework: Tailwind CSS (to explore a new framework beyond Bootstrap)
