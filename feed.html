@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Feed page displaying all listings" />
+    <link href="src/output.css" rel="stylesheet" />
+    <script src="script.js" defer></script>
+    <title>Feed | Auction House</title>
+  </head>
+  <body class="bg-body">
+    <header class="bg-tertiary fixed top-0 left-0 w-full">
+      <div class="p-4 flex items-center justify-between">
+        <div class="flex gap-3 items-center">
+          <nav>
+            <div class="hamburger-menu">
+              <div class="w-[25px] h-[3px] bg-primary my-[3px] rounded-lg"></div>
+              <div class="w-[25px] h-[3px] bg-primary my-[3px] rounded-lg"></div>
+              <div class="w-[25px] h-[3px] bg-primary my-[3px] rounded-lg"></div>
+            </div>
+          </nav>
+          <div class="flex items-center gap-3">
+            <button
+              class="bg-secondary text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary hover:cursor-pointer"
+            >
+              + New Listing
+            </button>
+          </div>
+        </div>
+        <div>
+          <img src="images/auction-house-logo.png" alt="Logo" class="cursor-pointer" />
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="bg-secondary px-4 py-2 rounded-full text-sm text-white">
+            Credits: <span class="text-credits">1,000</span>
+          </div>
+          <img
+            src="images/profile.jpg"
+            alt="Profile image"
+            class="w-10 h-10 rounded-full border-2 border-secondary hover:border-primary cursor-pointer"
+          />
+        </div>
+      </div>
+      <div class="m-3 flex gap-3">
+        <input
+          type="text"
+          placeholder="Search by title..."
+          class="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary bg-white"
+        />
+        <button
+          class="bg-secondary text-white px-4 py-2 rounded-lg text-sm hover:bg-primary cursor-pointer"
+        >
+          Search
+        </button>
+      </div>
+      <div class="p-2 shadow-md bg-secondary text-center text-white">
+        Discover Bid Own
+      </div>
+    </header>
+    <main></main>
+    <footer></footer>
+  </body>
+</html>
