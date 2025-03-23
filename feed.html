@@ -9,7 +9,7 @@
     <title>Feed | Auction House</title>
   </head>
   <body class="bg-body">
-    <header class="bg-tertiary fixed top-0 left-0 w-full">
+    <header class="bg-tertiary">
       <div class="p-4 flex items-center justify-between">
         <div class="flex gap-3 items-center">
           <nav>
@@ -21,17 +21,20 @@
           </nav>
           <div class="flex items-center gap-3">
             <button
-              class="bg-secondary p-1 md:p-2 text-white rounded-full text-sm hover:bg-primary hover:cursor-pointer"
+              class="bg-secondary p-1 md:p-2 text-white rounded-full text-xs text-center hover:bg-primary hover:cursor-pointer"
             >
               + New Listing
             </button>
           </div>
         </div>
-        <div>
-          <img src="images/auction-house-logo.png" alt="Logo" class="cursor-pointer w-15 md:w-30" />
+        <div class="flex flex-col items-center text-center">
+          <img src="images/logo-v2.png" alt="Logo" class="cursor-pointer w-20 md:w-25" />
+          <p class="text-primary font-light md:text-xl">Auction House</p>
         </div>
         <div class="flex items-center gap-3">
-          <div class="bg-secondary p-1 md:p-2 rounded-full text-sm text-white">
+          <div
+            class="bg-secondary p-1 md:p-2 rounded-full text-xs text-center text-white"
+          >
             Credits: <span class="text-credits">1,000</span>
           </div>
           <img
@@ -41,7 +44,7 @@
           />
         </div>
       </div>
-      <div class="m-3 flex gap-3">
+      <div class="m-3 mt-1 flex gap-3">
         <input
           type="text"
           placeholder="Search by title..."
@@ -53,11 +56,143 @@
           Search
         </button>
       </div>
-      <div class="p-2 shadow-md bg-secondary text-center text-white">
+      <div class="p-2 shadow-lg bg-secondary text-center text-white">
         Discover Bid Own
       </div>
     </header>
-    <main></main>
-    <footer></footer>
+    <main class="max-w-480 mx-auto">
+      <section class="flex flex-col justify-center p-10">
+        <h1 class="text-center font-extrabold md:text-8xl text-3xl text-primary">
+          Discover Your Next Treasure - Bid Now!
+        </h1>
+        <div class="flex justify-center gap-3 mt-5">
+          <button
+            class="bg-secondary text-white px-4 py-2 rounded-lg text-xl hover:bg-primary cursor-pointer"
+          >
+            Start Bidding
+          </button>
+          <button
+            class="bg-secondary text-white px-4 py-2 rounded-lg text-xl hover:bg-primary cursor-pointer"
+          >
+            List An Item
+          </button>
+        </div>
+      </section>
+      <section class="bg-white">
+        <h2 class="text-primary text-2xl font-bold px-4">Listings</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+          <div class="bg-tertiary p-4 rounded-lg shadow-lg relative">
+            <div class="relative">
+              <img
+                src="images/Item-image.png"
+                alt="Listing image"
+                class="w-full h-40 object-cover rounded-lg"
+              />
+              <div
+                class="absolute top-2 left-2 bg-secondary text-white px-2 py-1 rounded"
+              >
+                Total bids: 4
+              </div>
+              <div
+                class="absolute bottom-2 left-2 bg-secondary text-white px-2 py-1 rounded"
+              >
+                Ends: 27.02.25 01:00 PM
+              </div>
+            </div>
+            <h3 class="text-primary text-lg font-bold mt-2">Titan Watch</h3>
+            <p class="text-sm font-light">Created: 20.02.25</p>
+            <p class="text-sm font-light">
+              By:
+              <a class="text-secondary hover:text-primary" href="/author">SanderNilsen</a>
+            </p>
+            <p class="text-primary mt-2">
+              Titan watch no marks, good condition. Original packing and documents
+              included.
+            </p>
+            <button
+              class="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-primary cursor-pointer mt-2 w-full"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="bg-tertiary p-4 rounded-lg shadow-lg relative">
+            <div class="relative">
+              <img
+                src="images/Item-image.png"
+                alt="Listing image"
+                class="w-full h-40 object-cover rounded-lg"
+              />
+              <div
+                class="absolute top-2 left-2 bg-secondary text-white px-2 py-1 rounded"
+              >
+                Total bids: 4
+              </div>
+              <div
+                class="absolute bottom-2 left-2 bg-secondary text-white px-2 py-1 rounded"
+              >
+                Ends: 27.02.25 01:00 PM
+              </div>
+            </div>
+            <h3 class="text-primary text-lg font-bold mt-2">Titan Watch</h3>
+            <p class="text-sm font-light">Created: 20.02.25</p>
+            <p class="text-sm font-light">
+              By:
+              <a class="text-secondary hover:text-primary" href="/author">SanderNilsen</a>
+            </p>
+            <p class="text-primary mt-2">
+              Titan watch no marks, good condition. Original packing and documents
+              included.
+            </p>
+            <button
+              class="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-primary cursor-pointer mt-2 w-full"
+            >
+              View Details
+            </button>
+          </div>
+          <div class="bg-tertiary p-4 rounded-lg shadow-lg relative">
+            <div class="relative">
+              <img
+                src="images/Item-image.png"
+                alt="Listing image"
+                class="w-full h-40 object-cover rounded-lg"
+              />
+              <div
+                class="absolute top-2 left-2 bg-secondary text-white px-2 py-1 rounded"
+              >
+                Total bids: 4
+              </div>
+              <div
+                class="absolute bottom-2 left-2 bg-secondary text-white px-2 py-1 rounded"
+              >
+                Ends: 27.02.25 01:00 PM
+              </div>
+            </div>
+            <h3 class="text-primary text-lg font-bold mt-2">Titan Watch</h3>
+            <p class="text-sm font-light">Created: 20.02.25</p>
+            <p class="text-sm font-light">
+              By:
+              <a class="text-secondary hover:text-primary" href="/author">SanderNilsen</a>
+            </p>
+            <p class="text-primary mt-2">
+              Titan watch no marks, good condition. Original packing and documents
+              included.
+            </p>
+            <button
+              class="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-primary cursor-pointer mt-2 w-full"
+            >
+              View Details
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="bg-secondary">
+      <div class="flex flex-col items-center justify-center p-4">
+        <h4 class="text-white font-bold text-center text-2xl">Auction<br />House</h4>
+        <img src="images/logo-v2-white.png" alt="Logo" class="w-20 md:w-30 mt-2" />
+        <p class="text-white mt-1">Discover Bid Own</p>
+        <p class="text-white mt-3">© 2025 Auction House. All rights reserved.</p>
+      </div>
+    </footer>
   </body>
 </html>
