@@ -4,6 +4,7 @@
   "description": "For this project, I have been tasked with developing a fully functional auction site. The platform will allow users to buy and sell items using a credit-based system. New users will receive 1,000 credits upon registration, which they can use to bid on items. Additional credits can be earned by selling items through the platform.",
   "main": "index.js",
   "scripts": {
+    "build:css": "npx tailwindcss -i ./styles/input.css -o ./styles/output.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sander Nilsen",
