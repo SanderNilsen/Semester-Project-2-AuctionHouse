@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Feed page displaying all listings" />
+    <link href="/styles/output.css" rel="stylesheet" />
+    <script type="module" src="/public/js/listings.js" defer></script>
+    <title>Home | Auction House</title>
+  </head>
+  <body class="bg-body">
+    <header class="bg-tertiary">
+      <div class="max-w-340 mx-auto">
+        <div class="p-4 flex items-center justify-between">
+          <div class="flex gap-3 items-center">
+            <nav>
+              <div class="hamburger-menu">
+                <div class="w-[25px] h-[3px] bg-primary my-[3px] rounded-lg"></div>
+                <div class="w-[25px] h-[3px] bg-primary my-[3px] rounded-lg"></div>
+                <div class="w-[25px] h-[3px] bg-primary my-[3px] rounded-lg"></div>
+              </div>
+            </nav>
+            <div class="flex items-center gap-3">
+              <button
+                class="bg-secondary p-1 md:p-2 text-white rounded-full text-xs text-center hover:bg-primary hover:cursor-pointer"
+              >
+                + New Listing
+              </button>
+            </div>
+          </div>
+          <div class="flex flex-col items-center text-center">
+            <img
+              src="images/logo-v2.png"
+              alt="Logo"
+              class="cursor-pointer w-20 md:w-25"
+            />
+            <p class="text-primary font-light md:text-xl">Auction House</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <div
+            id="user-credits"
+            class="text-xs text-center text-white bg-secondary p-1 md:p-2 rounded-full"
+          >
+            <span id="credits-text"></span>
+          </div>
+          
+            <div id="profile-container" class="relative">
+              <img
+                id="profile-avatar"
+                src="images/avatar-placeholder.png"
+                alt="Profile image"
+                class="w-10 h-10 rounded-full border-2 border-secondary hover:border-primary cursor-pointer"
+              />
+
+              <div
+                id="profile-menu"
+                class="hidden absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-lg shadow-md z-50"
+              >
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                >
+                  Profile
+                </a>
+                <button
+                  id="logout-button"
+                  class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 hover:text-red-700 cursor-pointer"
+                >
+                  Log Out
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="m-3 mt-1 flex gap-3">
+          <input
+            type="text"
+            placeholder="Search by title..."
+            class="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary bg-white"
+          />
+          <button
+            class="bg-secondary text-white px-4 py-2 rounded-lg text-sm hover:bg-primary cursor-pointer"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+
+      <div class="p-2 shadow-lg bg-secondary text-center text-white">
+        Discover Bid Own
+      </div>
+    </header>
+
+    <main class="max-w-340 mx-auto">
+      <section class="flex flex-col justify-center p-10">
+        <h1 class="text-center font-extrabold md:text-8xl text-3xl text-primary">
+          Discover Your Next Treasure - Bid Now!
+        </h1>
+        <div class="flex justify-center gap-3 mt-5">
+          <button
+            class="bg-secondary text-white px-4 py-2 rounded-lg text-xl hover:bg-primary cursor-pointer"
+          >
+            Start Bidding
+          </button>
+          <button
+            class="bg-secondary text-white px-4 py-2 rounded-lg text-xl hover:bg-primary cursor-pointer"
+          >
+            List An Item
+          </button>
+        </div>
+      </section>
+
+      <section class="bg-white">
+        <h2 class="text-primary text-2xl font-bold px-4">Listings</h2>
+        <div id="spinner" class="hidden flex justify-center items-center py-6">
+          <div
+            class="w-8 h-8 border-4 border-secondary border-t-transparent rounded-full animate-spin"
+          ></div>
+        </div>
+        <div
+          id="auction-list"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4"
+        ></div>
+      </section>
+    </main>
+
+    <footer class="bg-secondary">
+      <div class="flex flex-col items-center justify-center p-4">
+        <h4 class="text-white font-bold text-center text-2xl">Auction<br />House</h4>
+        <img src="images/logo-v2-white.png" alt="Logo" class="w-20 md:w-30 mt-2" />
+        <p class="text-white mt-1">Discover Bid Own</p>
+        <p class="text-white mt-3">© 2025 Auction House. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
