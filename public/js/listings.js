@@ -1,70 +1,100 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const apiUrl = "https://v2.api.noroff.dev/auction/listings?_seller=true";
+import { fetchAuctions } from "./api/index.js";
+import { renderAuctions } from "./ui/renderListings.js";
+import {
+  getAuthToken,
+  getAuthUser,
+  logout,
+} from "./utils/authStorage.js";
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const profileImg = document.getElementById("profile-avatar");
+  const profileMenu = document.getElementById("profile-menu");
+  const profileContainer = document.getElementById("profile-container");
+  const logoutBtn = document.getElementById("logout-button");
+  const creditsText = document.getElementById("credits-text");
+
   const auctionList = document.getElementById("auction-list");
+  const spinner = document.getElementById("spinner");
 
-  async function fetchAuctions() {
-      try {
-          const response = await fetch(apiUrl);
-          if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          const data = await response.json();
-          displayAuctions(data.data);
-      } catch (error) {
-          console.error("Error fetching auctions:", error);
-          auctionList.innerHTML = `<p class="text-red-500">Failed to load auctions.</p>`;
+  const user = getAuthUser();
+  const avatarUrl = user?.avatar?.url;
+
+  // Set avatar image
+  if (profileImg) {
+    profileImg.src = avatarUrl || "images/avatar-placeholder.png";
+  }
+
+  // Handle header content based on login status
+  if (user) {
+    // Set credit text
+    if (creditsText) {
+      creditsText.textContent = `Credits: ${user.credits || "1,000"}`;
+    }
+
+    // Toggle dropdown menu
+    profileImg?.addEventListener("click", () => {
+      profileMenu?.classList.toggle("hidden");
+    });
+
+    logoutBtn?.addEventListener("click", () => {
+      logout();
+      window.location.href = "/public/index.html";
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", (e) => {
+      if (
+        !profileContainer.contains(e.target) &&
+        !profileMenu.classList.contains("hidden")
+      ) {
+        profileMenu.classList.add("hidden");
       }
+    });
+  } else {
+    // Not logged in: redirect on avatar click
+    profileImg?.addEventListener("click", () => {
+      window.location.href = "/public/register.html";
+    });
+
+    // Show register promo
+    if (creditsText) {
+      creditsText.textContent = "Register to receive 1000 credits";
+    }
   }
 
-  function displayAuctions(auctions) {
-    auctionList.innerHTML = auctions
-        .map((auction) => {
-            const imageUrl =
-                auction.media.length > 0 && auction.media[0].url
-                    ? auction.media[0].url
-                    : "images/placeholder.svg";
-              
-              const sellerName = auction.seller?.name || "Unknown Seller";        
-              const sellerAvatar =
-                auction.seller?.avatar?.url && auction.seller.avatar.url !== ""
-                    ? auction.seller.avatar.url
-                    : "images/avatar-placeholder.png";
-              const listingDescription = auction.description || "No description available";   
-
-            return `
-          <div  class="bg-tertiary p-4 rounded-lg shadow-lg">
-              <div class="relative">
-                <img
-                  src="${imageUrl}"
-                  alt="Listing image"
-                  class="w-full h-40 object-cover rounded-lg"
-                />
-                <div class="absolute top-2 left-2 bg-secondary/50 text-white px-2 py-1 rounded">
-                  Bids: ${auction._count?.bids || 0}                
-                </div>
-                <div
-                  class="absolute bottom-2 left-2 bg-secondary/50 text-white px-2 py-1 rounded">
-                Ends: ${new Date(auction.endsAt).toLocaleDateString()}
-                </div>
-              </div>
-              <h3 class="text-primary uppercase truncate text-lg font-bold mt-2">${auction.title}</h3>
-              <p class="text-sm font-light">Created: ${auction.created}</p>
-                <div class="flex items-center mt-3">
-                    <img src="${sellerAvatar}" alt="${sellerName}" class="w-8 h-8 rounded-full mr-2">
-                      <p class="text-sm font-light">${sellerName}</p>
-                 </div>
-              <p class="text-primary truncate mt-2">
-                ${listingDescription}
-              </p>
-              <button
-                class="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-primary cursor-pointer mt-2 w-full">
-                View Details
-              </button>
-            </div>
-      `
-  })
-          .join("");
+  // Fetch and render listings
+  if (!auctionList || !spinner) {
+    console.error("Missing auction list or spinner element");
+    return;
   }
 
-  fetchAuctions();
+  spinner.classList.remove("hidden");
+
+  try {
+    const auctions = await fetchAuctions();
+    renderAuctions(auctions, auctionList);
+  } catch (error) {
+    auctionList.innerHTML = `<p class="text-red-500">Failed to load auctions.</p>`;
+  } finally {
+    spinner.classList.add("hidden");
+  }
+
+  // Handle bid/view details button clicks
+  document.addEventListener("click", (event) => {
+    const bidBtn = event.target.closest("button[data-id]");
+    if (!bidBtn) return;
+
+    const auctionId = bidBtn.getAttribute("data-id");
+    const isLoggedIn = !!getAuthToken();
+
+    if (!isLoggedIn) {
+      alert("You need to log in to place a bid.");
+      localStorage.setItem("redirectAfterLogin", window.location.pathname);
+      window.location.href = "/public/index.html";
+      return;
+    }
+    // Proceed with bid or view details
+    // Placeholder: open bid modal or view details
+    console.log("User clicked to view/bid on auction ID:", auctionId);
+  });
 });

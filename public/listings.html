@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Feed page displaying all listings" />
     <link href="/styles/output.css" rel="stylesheet" />
-    <script src="/public/js/listings.js" defer></script>
+    <script type="module" src="/public/js/listings.js" defer></script>
     <title>Home | Auction House</title>
   </head>
   <body class="bg-body">
@@ -38,15 +38,38 @@
           </div>
           <div class="flex items-center gap-3">
             <div
-              class="bg-secondary p-1 md:p-2 rounded-full text-xs text-center text-white"
-            >
-              Credits: <span class="text-credits">1,000</span>
+            id="user-credits"
+            class="text-xs text-center text-white bg-secondary p-1 md:p-2 rounded-full"
+          >
+            <span id="credits-text"></span>
+          </div>
+          
+            <div id="profile-container" class="relative">
+              <img
+                id="profile-avatar"
+                src="images/avatar-placeholder.png"
+                alt="Profile image"
+                class="w-10 h-10 rounded-full border-2 border-secondary hover:border-primary cursor-pointer"
+              />
+
+              <div
+                id="profile-menu"
+                class="hidden absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-lg shadow-md z-50"
+              >
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                >
+                  Profile
+                </a>
+                <button
+                  id="logout-button"
+                  class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 hover:text-red-700 cursor-pointer"
+                >
+                  Log Out
+                </button>
+              </div>
             </div>
-            <img
-              src="images/profile.jpg"
-              alt="Profile image"
-              class="w-10 h-10 rounded-full border-2 border-secondary hover:border-primary cursor-pointer"
-            />
           </div>
         </div>
         <div class="m-3 mt-1 flex gap-3">
@@ -89,6 +112,11 @@
 
       <section class="bg-white">
         <h2 class="text-primary text-2xl font-bold px-4">Listings</h2>
+        <div id="spinner" class="hidden flex justify-center items-center py-6">
+          <div
+            class="w-8 h-8 border-4 border-secondary border-t-transparent rounded-full animate-spin"
+          ></div>
+        </div>
         <div
           id="auction-list"
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4"
