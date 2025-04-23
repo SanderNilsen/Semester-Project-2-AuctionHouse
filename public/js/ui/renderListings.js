@@ -1,4 +1,4 @@
-export function renderAuctions(auctions, container, sortBy = "newest") {
+export function renderAuctions(auctions, container, sortBy = "newest", visibleCount = 10) {
   if (!Array.isArray(auctions)) {
     container.innerHTML = `<p class="text-red-500">No auctions available.</p>`;
     return;
@@ -17,8 +17,9 @@ export function renderAuctions(auctions, container, sortBy = "newest") {
   });
 
   const isLoggedIn = !!localStorage.getItem("authToken");
+  const listingsToShow = sorted.slice(0, visibleCount);
 
-  container.innerHTML = sorted
+  container.innerHTML = listingsToShow
     .map((auction) => {
       const {
         id,
