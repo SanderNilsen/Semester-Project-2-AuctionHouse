@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const auctionList = document.getElementById("auction-list");
   const spinner = document.getElementById("spinner");
+  const sortSelect = document.getElementById("sort-select");
 
   const user = getAuthUser();
   const avatarUrl = user?.avatar?.url;
@@ -26,12 +27,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Handle header content based on login status
   if (user) {
-    // Set credit text
     if (creditsText) {
       creditsText.textContent = `Credits: ${user.credits || "1,000"}`;
     }
 
-    // Toggle dropdown menu
     profileImg?.addEventListener("click", () => {
       profileMenu?.classList.toggle("hidden");
     });
@@ -41,7 +40,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       window.location.href = "/public/index.html";
     });
 
-    // Close dropdown when clicking outside
     document.addEventListener("click", (e) => {
       if (
         !profileContainer.contains(e.target) &&
@@ -51,16 +49,17 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
   } else {
-    // Not logged in: redirect on avatar click
     profileImg?.addEventListener("click", () => {
       window.location.href = "/public/register.html";
     });
 
-    // Show register promo
     if (creditsText) {
       creditsText.textContent = "Register to receive 1000 credits";
     }
   }
+
+  // Store fetched auctions for sorting
+  let auctions = [];
 
   // Fetch and render listings
   if (!auctionList || !spinner) {
@@ -71,15 +70,21 @@ document.addEventListener("DOMContentLoaded", async () => {
   spinner.classList.remove("hidden");
 
   try {
-    const auctions = await fetchAuctions();
-    renderAuctions(auctions, auctionList);
+    auctions = await fetchAuctions();
+    renderAuctions(auctions, auctionList); // Default: newest
   } catch (error) {
     auctionList.innerHTML = `<p class="text-red-500">Failed to load auctions.</p>`;
   } finally {
     spinner.classList.add("hidden");
   }
 
-  // Handle bid/view details button clicks
+  // Handle sort dropdown
+  sortSelect?.addEventListener("change", (e) => {
+    const sortBy = e.target.value;
+    renderAuctions(auctions, auctionList, sortBy);
+  });
+
+  // Handle bid/view button clicks
   document.addEventListener("click", (event) => {
     const bidBtn = event.target.closest("button[data-id]");
     if (!bidBtn) return;
@@ -93,8 +98,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       window.location.href = "/public/index.html";
       return;
     }
-    // Proceed with bid or view details
-    // Placeholder: open bid modal or view details
+
+    // Placeholder: handle bid or details
     console.log("User clicked to view/bid on auction ID:", auctionId);
   });
 });

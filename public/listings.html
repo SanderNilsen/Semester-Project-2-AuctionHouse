@@ -38,12 +38,12 @@
           </div>
           <div class="flex items-center gap-3">
             <div
-            id="user-credits"
-            class="text-xs text-center text-white bg-secondary p-1 md:p-2 rounded-full"
-          >
-            <span id="credits-text"></span>
-          </div>
-          
+              id="user-credits"
+              class="text-xs text-center text-white bg-secondary p-1 md:p-2 rounded-full"
+            >
+              <span id="credits-text"></span>
+            </div>
+
             <div id="profile-container" class="relative">
               <img
                 id="profile-avatar"
@@ -110,8 +110,19 @@
         </div>
       </section>
 
-      <section class="bg-white">
-        <h2 class="text-primary text-2xl font-bold px-4">Listings</h2>
+      <section>
+        <div class="flex items-center justify-between px-4">
+          <h2 class="text-primary text-3xl font-bold">Listings</h2>
+
+          <select
+            id="sort-select"
+            class="text-sm px-4 py-2 bg-tertiary rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary"
+          >
+            <option value="newest">Newest</option>
+            <option value="endingSoon">Ending Soon</option>
+            <option value="highestBids">Highest Bids</option>
+          </select>
+        </div>
         <div id="spinner" class="hidden flex justify-center items-center py-6">
           <div
             class="w-8 h-8 border-4 border-secondary border-t-transparent rounded-full animate-spin"

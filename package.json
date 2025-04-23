@@ -1,12 +1,10 @@
 {
   "name": "semester-project-2-auctionhouse",
   "version": "1.0.0",
-  "description": "For this project, I have been tasked with developing a fully functional auction site. The platform will allow users to buy and sell items using a credit-based system. New users will receive 1,000 credits upon registration, which they can use to bid on items. Additional credits can be earned by selling items through the platform.",
-  "main": "main.js",
+  "description": "A fully functional auction site where users can bid and sell items using a credit-based system. New users start with 1,000 credits.",
   "type": "module",
   "scripts": {
-    "build:css": "npx tailwindcss -i ./styles/input.css -o ./styles/output.css --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:css": "npx tailwindcss -i ./styles/input.css -o ./public/styles/output.css --watch"
   },
   "author": "Sander Nilsen",
   "license": "ISC",
