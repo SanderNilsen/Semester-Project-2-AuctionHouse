@@ -21,7 +21,8 @@
               </div>
             </nav>
             <div class="flex items-center gap-3">
-              <button
+              <button 
+                id="new-listing-btn"
                 class="bg-secondary p-1 md:p-2 text-white rounded-full text-xs text-center hover:bg-primary hover:cursor-pointer"
               >
                 + New Listing
@@ -98,11 +99,13 @@
         </h1>
         <div class="flex justify-center gap-3 mt-5">
           <button
+            id="start-bidding-btn"
             class="bg-secondary text-white px-4 py-2 rounded-lg text-xl hover:bg-primary cursor-pointer"
           >
             Start Bidding
           </button>
           <button
+            id="list-item-btn"
             class="bg-secondary text-white px-4 py-2 rounded-lg text-xl hover:bg-primary cursor-pointer"
           >
             List An Item
@@ -110,7 +113,7 @@
         </div>
       </section>
 
-      <section>
+      <section id="listings">
         <div class="flex items-center justify-between px-4">
           <h2 class="text-primary text-3xl font-bold">Listings</h2>
 
@@ -123,7 +126,7 @@
             <option value="highestBids">Highest Bids</option>
           </select>
         </div>
-        <div id="spinner" class="hidden flex justify-center items-center py-6">
+        <div id="spinner" class="flex justify-center py-6">
           <div
             class="w-8 h-8 border-4 border-secondary border-t-transparent rounded-full animate-spin"
           ></div>
@@ -135,7 +138,7 @@
         <div class="p-4 text-center">
           <button
             id="load-more"
-            class=" bg-secondary text-white px-4 py-2 mb-4 rounded-lg text-lg hover:bg-primary"
+            class="bg-secondary text-white px-4 py-2 mb-4 rounded-lg text-lg hover:bg-primary"
           >
             Load More
           </button>
