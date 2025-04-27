@@ -50,13 +50,12 @@ document.addEventListener("DOMContentLoaded", () => {
         credits: userProfile.credits,
       });
     
-      window.location.href = "/public/listings.html";
+      window.location.href = "/listings.html";
     } catch (error) {
       console.error("Login failed:", error);
       errorMsg.textContent = error.message;
     } finally {
       spinner.classList.add("hidden");
     }
-    
   });
 });

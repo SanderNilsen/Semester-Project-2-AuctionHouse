@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       await registerUser(username, email, password);
-      window.location.href = "/public/index.html";
+      window.location.href = "/index.html";
     } catch (error) {
       console.error("Registration failed:", error);
       errorMsg.textContent = error.message;

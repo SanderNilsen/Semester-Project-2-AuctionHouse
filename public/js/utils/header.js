@@ -68,7 +68,7 @@ export function setupHeader() {
     }
 
     signInBtn?.addEventListener("click", () => {
-      window.location.href = "/public/index.html";
+      window.location.href = "/index.html";
     });
   }
 }

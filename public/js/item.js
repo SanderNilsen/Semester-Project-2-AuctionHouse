@@ -52,7 +52,7 @@ function setupPlaceBid(listingId) {
     const token = getAuthToken();
     if (!token) {
       alert("You must be logged in to place a bid.");
-      window.location.href = "/public/index.html";
+      window.location.href = "/index.html";
       return;
     }
 

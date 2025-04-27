@@ -105,10 +105,10 @@ searchInput?.addEventListener("keypress", (event) => {
     if (!isLoggedIn) {
       alert("You need to log in to place a bid.");
       localStorage.setItem("redirectAfterLogin", window.location.pathname);
-      window.location.href = "/public/index.html";
+      window.location.href = "/index.html";
       return;
     }
 
-    window.location.href = `/public/item.html?id=${auctionId}`;
+    window.location.href = `/item.html?id=${auctionId}`;
   });
 });
