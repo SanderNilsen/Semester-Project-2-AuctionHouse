@@ -12,24 +12,15 @@
     <header class="bg-tertiary">
       <div class="max-w-340 mx-auto">
         <div class="p-4 flex items-center justify-between">
-          <div class="flex gap-3 items-center">
-            <nav>
-              <div class="hamburger-menu">
-                <div class="w-[25px] h-[3px] bg-primary my-[3px] rounded-lg"></div>
-                <div class="w-[25px] h-[3px] bg-primary my-[3px] rounded-lg"></div>
-                <div class="w-[25px] h-[3px] bg-primary my-[3px] rounded-lg"></div>
-              </div>
-            </nav>
-            <div class="flex items-center gap-3">
-              <button 
-                id="new-listing-btn"
-                class="bg-secondary p-1 md:p-2 text-white rounded-full text-xs text-center hover:bg-primary hover:cursor-pointer"
-              >
-                + New Listing
-              </button>
-            </div>
+          <div class="flex items-center gap-3">
+            <button
+              id="new-listing-btn"
+              class="bg-secondary text-white text-xs text-center hover:bg-primary hover:cursor-pointer p-1 md:p-2 rounded-lg"
+            >
+              + New Listing
+            </button>
           </div>
-          <div class="flex flex-col items-center text-center">
+          <div class="flex flex-col items-center justify-center text-center">
             <img
               src="images/logo-v2.png"
               alt="Logo"
@@ -40,11 +31,10 @@
           <div class="flex items-center gap-3">
             <div
               id="user-credits"
-              class="text-xs text-center text-white bg-secondary p-1 md:p-2 rounded-full"
+              class="text-xs text-center text-white bg-secondary p-1 md:p-2 rounded-lg"
             >
-              <span id="credits-text"></span>
+              <span id="credits-text" class="hidden"></span>
             </div>
-
             <div id="profile-container" class="relative">
               <img
                 id="profile-avatar"
@@ -52,7 +42,9 @@
                 alt="Profile image"
                 class="w-10 h-10 rounded-full border-2 border-secondary hover:border-primary cursor-pointer"
               />
-
+              <button id="sign-in-button" class="hidden text-primary cursor-pointer">
+                Sign In
+              </button>
               <div
                 id="profile-menu"
                 class="hidden absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-lg shadow-md z-50"
@@ -73,21 +65,8 @@
             </div>
           </div>
         </div>
-        <div class="m-3 mt-1 flex gap-3">
-          <input
-            type="text"
-            placeholder="Search by title..."
-            class="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary bg-white"
-          />
-          <button
-            class="bg-secondary text-white px-4 py-2 rounded-lg text-sm hover:bg-primary cursor-pointer"
-          >
-            Search
-          </button>
-        </div>
       </div>
-
-      <div class="p-2 shadow-lg bg-secondary text-center text-white">
+      <div id="promo-message" class="p-2 shadow-lg bg-secondary text-center text-white">
         Discover Bid Own
       </div>
     </header>
@@ -114,18 +93,32 @@
       </section>
 
       <section id="listings">
-        <div class="flex items-center justify-between px-4">
-          <h2 class="text-primary text-3xl font-bold">Listings</h2>
+        <h2 class="px-4 text-primary text-3xl font-bold">Listings</h2>
+        <div class="flex flex-col md:flex-row p-4 gap-3">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search by title..."
+            class="flex-1 px-4 py-2 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-secondary"
+          />
+
+          <button
+            id="search-button"
+            class="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-primary text-sm"
+          >
+            Search
+          </button>
 
           <select
             id="sort-select"
-            class="text-sm px-4 py-2 bg-tertiary rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary"
+            class="text-sm px-2 py-2 bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary"
           >
             <option value="newest">Newest</option>
             <option value="endingSoon">Ending Soon</option>
             <option value="highestBids">Highest Bids</option>
           </select>
         </div>
+
         <div id="spinner" class="flex justify-center py-6">
           <div
             class="w-8 h-8 border-4 border-secondary border-t-transparent rounded-full animate-spin"

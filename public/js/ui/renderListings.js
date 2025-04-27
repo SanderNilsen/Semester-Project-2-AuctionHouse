@@ -37,7 +37,7 @@ export function renderAuctions(auctions, container, sortBy = "newest", visibleCo
       const sellerAvatar = seller.avatar?.url || "images/avatar-placeholder.png";
 
       return `
-        <div class="bg-tertiary p-4 rounded-lg shadow-lg">
+        <div class="bg-white p-4 rounded-lg shadow-lg">
           <div class="relative">
             <img src="${imageUrl}" alt="Listing image"
               class="w-full h-40 object-cover rounded-lg" />

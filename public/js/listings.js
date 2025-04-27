@@ -10,6 +10,8 @@ let currentSort = "newest";
 document.addEventListener("DOMContentLoaded", async () => {
   setupHeader(); 
 
+  const searchInput = document.getElementById("search-input");
+  const searchButton = document.getElementById("search-button");
   const auctionList = document.getElementById("auction-list");
   const spinner = document.getElementById("spinner");
   const sortSelect = document.getElementById("sort-select");
@@ -21,6 +23,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     listingsSection?.scrollIntoView({ behavior: "smooth" });
   });
 
+searchButton?.addEventListener("click", () => {
+  const searchTerm = searchInput.value.trim().toLowerCase();
+
+  const filteredAuctions = auctions.filter((auction) =>
+    auction.title.toLowerCase().includes(searchTerm)
+  );
+
+  renderAuctions(filteredAuctions, auctionList, currentSort, currentCount);
+
+  const loadMoreBtn = document.getElementById("load-more");
+  if (filteredAuctions.length <= currentCount) {
+    loadMoreBtn?.classList.add("hidden");
+  } else {
+    loadMoreBtn?.classList.remove("hidden");
+  }
+});
+
+searchInput?.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    searchButton.click();
+  }
+});
   if (!auctionList || !spinner || !loadMoreBtn) {
     console.error("Missing required elements");
     return;
