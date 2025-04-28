@@ -9,7 +9,6 @@ export default defineConfig(({ mode }) => {
       outDir: "../dist",
       emptyOutDir: true,
     },
-    publicDir: "../public",
     define: {
       "import.meta.env.VITE_API_KEY": JSON.stringify(env.VITE_API_KEY),
     },
