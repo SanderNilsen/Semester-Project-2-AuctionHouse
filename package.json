@@ -4,17 +4,18 @@
   "description": "A fully functional auction site where users can bid and sell items using a credit-based system. New users start with 1,000 credits.",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "npm-run-all --parallel build:css vite",
+    "vite": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "build:css": "tailwindcss -i ./styles/input.css -o ./styles/output.css --watch"
+    "build:css": "tailwindcss -i ./public/styles/input.css -o ./public/styles/output.css --watch"
   },
   "author": "Sander Nilsen",
   "license": "ISC",
-  "dependencies": {
-    "tailwindcss": "^4.1.4"
-  },
   "devDependencies": {
+    "@tailwindcss/cli": "^4.1.4",
+    "npm-run-all": "^4.1.5",
+    "tailwindcss": "^4.1.4",
     "vite": "^5.4.18"
   }
 }

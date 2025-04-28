@@ -1,5 +1,5 @@
 import { getAuthToken, getAuthUser, saveAuthData } from "./utils/authStorage.js";
-import { API_BASE, API_KEY } from "./utils/constants.js";
+import { authFetch } from "./utils/authApi.js"; 
 import { setupHeader } from "./utils/header.js";
 import { renderItem } from "./ui/renderItem.js";
 
@@ -21,12 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   try {
-    const response = await fetch(`${API_BASE}/auction/listings/${listingId}?_bids=true&_seller=true`);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const auction = await response.json();
+    const auction = await authFetch(`/auction/listings/${listingId}?_bids=true&_seller=true`);
     renderItem(auction.data);
     setupPlaceBid(listingId);
   } catch (error) {
@@ -57,29 +52,21 @@ function setupPlaceBid(listingId) {
     }
 
     try {
-      const response = await fetch(`${API_BASE}/auction/listings/${listingId}/bids`, {
+      await authFetch(`/auction/listings/${listingId}/bids`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
-          "X-Noroff-API-Key": API_KEY,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ amount }),
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.errors?.[0]?.message || "Failed to place bid.");
-      }
-
       alert("Bid placed successfully!");
 
       updateCreditsAfterBid(amount);
-
       window.location.reload();
     } catch (error) {
       console.error("Error placing bid:", error);
-      alert(`${error.message}`);
+      alert(error.message);
     }
   });
 }
