@@ -1,6 +1,6 @@
-import { loginUser } from "./api/index.js";
+import { loginUser } from "./api/auth.js";
 import { saveAuthData } from "./utils/authStorage.js";
-import { authFetch } from "./utils/authApi.js"; 
+import { authFetch } from "./utils/authFetch.js"; 
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("login-form");

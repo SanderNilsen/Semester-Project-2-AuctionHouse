@@ -55,7 +55,7 @@
                 class="hidden absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-lg shadow-md z-50"
               >
                 <a
-                  href="#"
+                  href="profile.html"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
                 >
                   Profile
@@ -88,4 +88,56 @@
       </div>
     </footer>
   </body>
+  <div
+  id="new-listing-modal"
+  class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50"
+>
+  <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-4">
+    <h2 class="text-primary text-2xl mb-4 text-center">Create New Listing</h2>
+    <form id="new-listing-form" class="flex flex-col gap-4">
+      <input
+        type="text"
+        id="listing-title"
+        placeholder="Title"
+        class="px-4 py-2 border rounded"
+        required
+      />
+      <textarea
+        id="listing-description"
+        placeholder="Description"
+        class="px-4 py-2 border rounded"
+        required
+      ></textarea>
+      <input
+        type="url"
+        id="listing-image"
+        placeholder="Image URL"
+        class="px-4 py-2 border rounded"
+        required
+      />
+      <input
+        type="datetime-local"
+        id="listing-endsAt"
+        class="px-4 py-2 border rounded"
+        required
+      />
+
+      <div class="flex justify-end gap-2">
+        <button
+          type="button"
+          id="cancel-listing"
+          class="text-secondary hover:text-primary"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="bg-secondary text-white px-4 py-2 rounded hover:bg-primary"
+        >
+          Publish
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
 </html>

@@ -1,5 +1,5 @@
 import { getAuthToken, getAuthUser, saveAuthData } from "./utils/authStorage.js";
-import { authFetch } from "./utils/authApi.js"; 
+import { authFetch } from "./utils/authFetch.js"; 
 import { setupHeader } from "./utils/header.js";
 import { renderItem } from "./ui/renderItem.js";
 

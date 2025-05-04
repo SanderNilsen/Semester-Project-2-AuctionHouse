@@ -1,4 +1,4 @@
-import { authFetch } from "../utils/authApi.js";
+import { authFetch } from "../utils/authFetch.js";
 
 export async function loginUser(email, password) {
   return authFetch("/auth/login", {

@@ -1,21 +1,22 @@
-const TOKEN_KEY = "authToken";
-const USER_KEY = "authUser";
+const KEYS = {
+  TOKEN: "authToken",
+  USER: "authUser",
+};
 
 export function saveAuthData(token, user) {
-  localStorage.setItem(TOKEN_KEY, token);
-  localStorage.setItem(USER_KEY, JSON.stringify(user));
+  localStorage.setItem(KEYS.TOKEN, token);
+  localStorage.setItem(KEYS.USER, JSON.stringify(user));
 }
 
 export function getAuthToken() {
-  return localStorage.getItem(TOKEN_KEY);
+  return localStorage.getItem(KEYS.TOKEN);
 }
 
 export function getAuthUser() {
-  return JSON.parse(localStorage.getItem(USER_KEY));
+  return JSON.parse(localStorage.getItem(KEYS.USER));
 }
 
 export function logout() {
-  localStorage.removeItem(TOKEN_KEY);
-  localStorage.removeItem(USER_KEY);
+  localStorage.removeItem(KEYS.TOKEN);
+  localStorage.removeItem(KEYS.USER);
 }
-
