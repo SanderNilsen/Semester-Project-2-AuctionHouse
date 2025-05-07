@@ -14,7 +14,8 @@ export default defineConfig(({ mode }) => {
           main: resolve(__dirname, "public/index.html"),
           listings: resolve(__dirname, "public/listings.html"),
           item: resolve(__dirname, "public/item.html"),
-          register: resolve(__dirname, "public/register.html"),        },
+          register: resolve(__dirname, "public/register.html"),  
+          profile: resolve(__dirname, "public/profile.html"),        },
       },
     },
     define: {
