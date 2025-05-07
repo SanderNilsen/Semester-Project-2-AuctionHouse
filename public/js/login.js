@@ -1,5 +1,5 @@
 import { loginUser } from "./api/auth.js";
-import { saveAuthData } from "./utils/authStorage.js";
+import { saveAuthData, logout, getAuthToken } from "./utils/authStorage.js";
 import { headers } from "./api/headers.js";
 import { API_BASE } from "./utils/constants.js";
 
@@ -44,9 +44,21 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "/listings.html";
     } catch (error) {
       console.error("Login failed:", error);
-      errorMsg.textContent = error.message;
+      if (error.message === "Email must be a valid email") {
+        errorMsg.textContent = "Only a user with a stud.noroff.no email may register.";
+      } else {
+        errorMsg.textContent = error.message;
+      }
     } finally {
       spinner.classList.add("hidden");
     }
   });
+
+  const guestBtn = document.getElementById("guest-btn");
+  if (guestBtn) {
+    guestBtn.addEventListener("click", () => {
+      logout();
+      window.location.href = "/listings.html";
+    });
+  }
 });
