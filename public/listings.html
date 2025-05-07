@@ -11,53 +11,58 @@
   <body class="bg-body">
     <header class="bg-tertiary">
       <div class="max-w-340 mx-auto">
-        <div class="p-4 flex items-center justify-between">
+        <div class="pt-8 pb-6 pl-4 pr-4 flex items-center justify-between relative">
           <div class="flex items-center gap-3">
             <button
               id="new-listing-btn"
-              class="bg-secondary text-white text-xs text-center hover:bg-primary hover:cursor-pointer p-1 md:p-2 rounded-lg"
+              class="bg-gradient-to-r from-secondary to-primary text-white font-semibold text-xs text-center px-3 py-2 rounded-lg hover:brightness-110 transition cursor-pointer"
             >
               + New Listing
             </button>
           </div>
-          <div class="flex flex-col items-center justify-center text-center">
-            <img
-              src="images/logo-v2.png"
-              alt="Logo"
-              class="cursor-pointer w-20 md:w-25"
-            />
+          <div
+            class="absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center text-center"
+          >
+            <a href="listings.html">
+              <img src="images/logo-v2.png" alt="Logo" class="cursor-pointer w-15"
+            /></a>
             <p class="text-primary font-light md:text-xl">Auction House</p>
           </div>
           <div class="flex items-center gap-3">
-            <div
-              id="user-credits"
-              class="text-xs text-center text-white bg-secondary p-1 md:p-2 rounded-lg"
-            >
-              <span id="credits-text" class="hidden"></span>
-            </div>
-            <div id="profile-container" class="relative">
+            <div id="profile-container" class="relative flex flex-col items-center">
               <img
                 id="profile-avatar"
                 src="images/avatar-placeholder.png"
                 alt="Profile image"
                 class="w-10 h-10 rounded-full border-2 border-secondary hover:border-primary cursor-pointer"
               />
-              <button id="sign-in-button" class="hidden text-primary cursor-pointer">
+              <div
+                id="user-credits"
+                class="mt-1 text-xs text-center text-white bg-secondary px-2 py-1 rounded-full"
+              >
+                <span id="credits-text"></span>
+              </div>
+
+              <button
+                id="sign-in-button"
+                class="hidden text-primary mt-1 hover:underline cursor-pointer"
+              >
                 Sign In
               </button>
+
               <div
                 id="profile-menu"
-                class="hidden absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-lg shadow-md z-50"
+                class="hidden absolute right-0 mt-2 w-max bg-white border border-gray-200 rounded-lg shadow-lg z-50 overflow-hidden"
               >
                 <a
                   href="profile.html"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                  class="flex items-center gap-2 px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
                 >
                   Profile
                 </a>
                 <button
                   id="logout-button"
-                  class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 hover:text-red-700 cursor-pointer"
+                  class="w-full flex items-center gap-2 text-left px-4 py-3 text-sm text-red-600 hover:bg-red-50 hover:text-red-700 transition-colors cursor-pointer"
                 >
                   Log Out
                 </button>
@@ -115,7 +120,7 @@
           >
             <option value="newest">Newest</option>
             <option value="endingSoon">Ending Soon</option>
-            <option value="highestBids">Highest Bids</option>
+            <option value="mostBids">Most Bids</option>
           </select>
         </div>
 
@@ -153,7 +158,9 @@
     class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50"
   >
     <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-4">
-      <h2 class="text-primary text-2xl mb-4 text-center">Create New Listing</h2>
+      <h2 id="new-listing-modal-title" class="text-primary text-2xl mb-4 text-center">
+        Create New Listing
+      </h2>
       <form id="new-listing-form" class="flex flex-col gap-4">
         <input
           type="text"
@@ -183,6 +190,13 @@
         />
 
         <div class="flex justify-end gap-2">
+          <button
+            type="button"
+            id="delete-listing-button"
+            class="text-red-600 hidden hover:text-red-700"
+          >
+            Delete Listing
+          </button>
           <button
             type="button"
             id="cancel-listing"

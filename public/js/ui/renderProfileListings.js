@@ -4,21 +4,51 @@ export function renderProfileListings(items, tab, container) {
     return;
   }
 
-  container.innerHTML = items
-    .map((item) => {
-      const listing = (tab === "bids" || tab === "wins") ? item.listing || {} : item;
+  const html = items.map(renderItem).join("");
+  container.innerHTML = html;
 
-      return `
-        <div class="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between">
-          <img src="${listing.media?.[0]?.url || "images/placeholder.svg"}"
-               alt="${listing.title}" class="rounded-lg h-40 w-full object-cover mb-3" />
-          <h3 class="text-primary font-semibold">${listing.title || "Untitled"}</h3>
-          <p class="text-sm text-gray-600">${listing.description || "No description"}</p>
-          <a href="/item.html?id=${listing.id}" class="bg-secondary text-white text-center mt-4 py-2 px-4 rounded hover:bg-primary">View Details</a>
-          <button class="delete-btn bg-red-600 text-white mt-2 py-2 px-4 rounded hover:bg-red-700" data-id="${listing.id}">
-            Delete
-          </button>
-        </div>`;
-    })
-    .join("");
+  function renderItem(item) {
+    const listing = tab === "bids" ? item.listing || {} : item;
+    const {
+      id,
+      title = "Untitled",
+      description = "No description",
+      media = []
+    } = listing;
+    const imageUrl = media[0]?.url || "images/placeholder.svg";
+
+    return (
+      `<div class="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between">
+        <img
+          src="${imageUrl}"
+          alt="${title}"
+          class="rounded-lg h-40 w-full object-cover mb-3"
+        />
+        <h3 class="text-primary font-semibold flex justify-between items-center">
+          ${title}
+          ${tab === "listings" ? editButton(id) : ""}
+        </h3>
+        <p class="text-sm text-gray-600">${description}</p>
+        <a
+          href="/item.html?id=${id}"
+          class="bg-secondary text-white text-center mt-4 py-2 px-4 rounded hover:bg-primary"
+        >
+          View Details
+        </a>
+      </div>`
+    );
+  }
+
+  function editButton(listingId) {
+    return (
+      `<div class="flex gap-2">
+        <button
+          data-id="${listingId}"
+          class="edit-btn bg-white border text-secondary text-xs px-2 py-1 rounded hover:bg-secondary hover:text-white cursor-pointer"
+        >
+          Edit
+        </button>
+      </div>`
+    );
+  }
 }

@@ -1,8 +1,8 @@
 import { fetchAuctions } from "./api/auctionApi.js";
 import { renderAuctions } from "./ui/renderListings.js";
-import { setupHeader } from "./utils/header.js";
+import { setupHeader } from "./ui/setupHeader.js";
 import { getAuthToken } from "./utils/authStorage.js";
-import { setupNewListingModal } from "./utils/modal.js";
+import { setupListingModal } from "./utils/modal.js";
 
 let auctions = [];
 let currentCount = 10;
@@ -10,7 +10,7 @@ let currentSort = "newest";
 
 document.addEventListener("DOMContentLoaded", async () => {
   setupHeader(); 
-  setupNewListingModal(); 
+  setupListingModal(); 
   const searchInput = document.getElementById("search-input");
   const searchButton = document.getElementById("search-button");
   const auctionList = document.getElementById("auction-list");

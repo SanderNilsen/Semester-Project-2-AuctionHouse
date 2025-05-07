@@ -1,15 +1,12 @@
-import { API_BASE, API_KEY } from "./constants.js";
+import { API_BASE } from "./constants.js";
+import { headers } from "../api/headers.js";
+import { getAuthToken } from "./authStorage.js";
 
 export async function authFetch(url, options = {}) {
-  const headers = {
-    ...(options.headers || {}),
-    "Content-Type": "application/json",
-    "X-Noroff-API-Key": API_KEY,
-  };
-
+  const token = getAuthToken();
   const response = await fetch(`${API_BASE}${url}`, {
     ...options,
-    headers,
+    headers: headers(token, options.body !== undefined),
   });
 
   const data = await response.json();

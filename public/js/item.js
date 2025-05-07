@@ -1,10 +1,13 @@
 import { getAuthToken, getAuthUser, saveAuthData } from "./utils/authStorage.js";
 import { authFetch } from "./utils/authFetch.js"; 
-import { setupHeader } from "./utils/header.js";
+import { setupHeader } from "./ui/setupHeader.js";
 import { renderItem } from "./ui/renderItem.js";
+import { headers } from "./api/headers.js";
+import { setupListingModal } from "./utils/modal.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   setupHeader();
+  setupListingModal();
 
   const params = new URLSearchParams(window.location.search);
   const listingId = params.get("id");
@@ -54,9 +57,7 @@ function setupPlaceBid(listingId) {
     try {
       await authFetch(`/auction/listings/${listingId}/bids`, {
         method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: headers(true),
         body: JSON.stringify({ amount }),
       });
 

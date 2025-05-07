@@ -1,6 +1,7 @@
 import { loginUser } from "./api/auth.js";
 import { saveAuthData } from "./utils/authStorage.js";
-import { authFetch } from "./utils/authFetch.js"; 
+import { headers } from "./api/headers.js";
+import { API_BASE } from "./utils/constants.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("login-form");
@@ -24,11 +25,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await loginUser(email, password);
       const { accessToken, name } = result.data;
 
-      const profile = await authFetch(`/auction/profiles/${name}`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
+      const response = await fetch(`${API_BASE}/auction/profiles/${name}`, {
+        headers: headers(accessToken),
       });
+      const profile = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(profile.errors?.[0]?.message || "Failed to fetch profile");
+      }
 
       saveAuthData(accessToken, {
         name: profile.data.name,
