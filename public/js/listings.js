@@ -24,29 +24,30 @@ document.addEventListener("DOMContentLoaded", async () => {
     listingsSection?.scrollIntoView({ behavior: "smooth" });
   });
 
-searchButton?.addEventListener("click", () => {
-  const searchTerm = searchInput.value.trim().toLowerCase();
-
-  const filteredAuctions = auctions.filter((auction) =>
-    auction.title.toLowerCase().includes(searchTerm)
-  );
-
-  renderAuctions(filteredAuctions, auctionList, currentSort, currentCount);
-
-  const loadMoreBtn = document.getElementById("load-more");
-  if (filteredAuctions.length <= currentCount) {
-    loadMoreBtn?.classList.add("hidden");
-  } else {
-    loadMoreBtn?.classList.remove("hidden");
+  function handleSearch() {
+    const term = searchInput.value.trim().toLowerCase();
+    spinner.classList.remove("hidden");
+    try {
+      const filtered = auctions.filter(a => a.title.toLowerCase().includes(term));
+      renderAuctions(filtered, auctionList, currentSort, currentCount);
+      loadMoreBtn.classList.toggle("hidden", filtered.length <= currentCount);
+    } catch (err) {
+      console.error("Search error:", err);
+      auctionList.innerHTML = `<p class=\"text-red-500\">Search failed.</p>`;
+    } finally {
+      spinner.classList.add("hidden");
+    }
   }
-});
 
-searchInput?.addEventListener("keypress", (event) => {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    searchButton.click();
+  if (searchButton) searchButton.addEventListener("click", handleSearch);
+  if (searchInput) {
+    searchInput.addEventListener("keydown", event => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        handleSearch();
+      }
+    });
   }
-});
   if (!auctionList || !spinner || !loadMoreBtn) {
     console.error("Missing required elements");
     return;
