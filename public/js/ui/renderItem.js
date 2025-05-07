@@ -14,6 +14,7 @@ export function renderItem(auction) {
 
   const imageUrl = media[0]?.url || 'images/placeholder.svg';
   const sellerName = seller.name || 'Unknown Seller';
+  const sellerAvatar = seller.avatar?.url || 'images/avatar-placeholder.png';
   const createdDate = new Date(created).toLocaleDateString();
   const endsDate = new Date(endsAt).toLocaleString();
   const sortedBids = bids.slice().sort((a, b) => b.amount - a.amount);
@@ -28,8 +29,18 @@ export function renderItem(auction) {
       />
       <div class="mt-4 flex justify-between items-center">
         <div>
-          <h3 class="text-primary text-lg font-bold">${title}</h3>
-          <p class="text-sm font-light">By: <span class="text-secondary">${sellerName}</span></p>
+          <h3 class="text-primary uppercase text-lg font-bold">${title}</h3>
+          <a
+            href="profile.html?user=${(sellerName)}"
+            class="text-sm font-light flex items-center mt-1"
+          >
+          <img
+            src="${sellerAvatar}"
+            alt="${sellerName}"
+            class="w-8 h-8 rounded-full mr-2"
+          />
+          <p class="text-secondary">${sellerName}</p>
+          </a>
         </div>
         <div class="text-right">
           <p class="text-sm font-light">Created: ${createdDate}</p>

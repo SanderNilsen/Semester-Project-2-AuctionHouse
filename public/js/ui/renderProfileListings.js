@@ -1,3 +1,7 @@
+const urlParams = new URLSearchParams(window.location.search);
+const profileToView = urlParams.get('user');
+const isOwnProfile = !profileToView;
+
 export function renderProfileListings(items, tab, container) {
   if (!items.length) {
     container.innerHTML = `<p class="text-primary">No ${tab} yet.</p>`;
@@ -24,9 +28,9 @@ export function renderProfileListings(items, tab, container) {
           alt="${title}"
           class="rounded-lg h-40 w-full object-cover mb-3"
         />
-        <h3 class="text-primary font-semibold flex justify-between items-center">
+        <h3 class="text-primary uppercase font-semibold flex justify-between items-center">
           ${title}
-          ${tab === "listings" ? editButton(id) : ""}
+          ${tab === "listings" && isOwnProfile ? editButton(id) : ""}
         </h3>
         <p class="text-sm text-gray-600">${description}</p>
         <a

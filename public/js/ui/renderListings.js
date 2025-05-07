@@ -64,14 +64,17 @@ function renderAuctionCard(auction, isLoggedIn) {
         ${title}
       </h3>
       <p class="text-sm font-light">Created: ${createdDate}</p>
-      <div class="flex items-center mt-3">
+      <a
+        href="profile.html?user=${(sellerName)}"
+        class="flex items-center mt-3 hover:text-secondary"
+      >
         <img
           src="${sellerAvatar}"
           alt="${sellerName}"
           class="w-8 h-8 rounded-full mr-2"
         />
         <p class="text-sm font-light">${sellerName}</p>
-      </div>
+      </a>
       <p class="text-primary truncate mt-2">${description}</p>
       <button
         class="bg-secondary text-white px-4 py-2 rounded-lg mt-2 w-full hover:bg-primary ${!isLoggedIn ? 'opacity-50 cursor-not-allowed' : ''}"

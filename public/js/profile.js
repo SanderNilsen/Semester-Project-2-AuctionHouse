@@ -5,6 +5,9 @@ import { renderProfileListings } from "./ui/renderProfileListings.js";
 import { setupListingModal, openEditListingModal } from "./utils/modal.js";
 import { headers } from "./api/headers.js";
 
+const urlParams = new URLSearchParams(window.location.search);
+const profileToView = urlParams.get("user");
+
 setupHeader();
 setupListingModal();
 
@@ -19,20 +22,27 @@ const editModal = document.getElementById("edit-profile-modal");
 const editForm = document.getElementById("edit-profile-form");
 const cancelEditBtn = document.getElementById("cancel-profile-edit");
 
-const user = getAuthUser();
+const loggedInUser = getAuthUser();
 const token = getAuthToken();
 
-if (!user || !token) {
+const profileName  = profileToView || loggedInUser?.name;
+const isOwnProfile = !profileToView;
+
+if (!profileName) {
   window.location.href = "/index.html";
 }
 
 loadProfile();
 loadTab("listings");
 
+if (!isOwnProfile) {
+  document.getElementById('edit-profile-btn')?.classList.add('hidden');
+}
+
 
 async function loadProfile() {
   try {
-    const res = await fetch(`${API_BASE}/auction/profiles/${user.name}`, {
+    const res = await fetch(`${API_BASE}/auction/profiles/${profileName}`, {
       headers: headers(token),
     });
     
@@ -45,10 +55,10 @@ async function loadProfile() {
     bioEl.textContent = data.bio || "No bio";
   } catch (err) {
     console.error(err);
-    avatarEl.src = user.avatar?.url || "images/avatar-placeholder.png";
-    nameEl.textContent = user.name || "Unnamed";
-    emailEl.textContent = user.email || "Not available";
-    bioEl.textContent = user.bio || "";
+    avatarEl.src = loggedInUser?.avatar?.url || "images/avatar-placeholder.png";
+    nameEl.textContent = loggedInUser?.name || "Unnamed";
+    emailEl.textContent = loggedInUser?.email || "Not available";
+    bioEl.textContent = loggedInUser?.bio || "";
   }
 }
 
@@ -60,7 +70,7 @@ export async function loadTab(tab) {
     </div>
   </div>`;
   
-  const endpoint = `${API_BASE}/auction/profiles/${user.name}/${tab}${tab === "bids" ? "?_listings=true" : ""}`;
+  const endpoint = `${API_BASE}/auction/profiles/${profileName}/${tab}${tab === "bids" ? "?_listings=true" : ""}`;
 
   try {
     const res = await fetch(endpoint, {
@@ -95,7 +105,7 @@ cancelEditBtn?.addEventListener("click", () => editModal.classList.add("hidden")
 editForm?.addEventListener("submit", async (e) => {
   e.preventDefault();
   try {
-    const res = await fetch(`${API_BASE}/auction/profiles/${user.name}`, {
+    const res = await fetch(`${API_BASE}/auction/profiles/${profileName}`, {
       method: "PUT",
       headers: headers(token, true),
       body: JSON.stringify({
