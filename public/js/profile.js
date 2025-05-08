@@ -98,9 +98,13 @@ editProfileBtn?.addEventListener("click", () => {
   document.getElementById("edit-avatar-url").value = avatarEl.src;
   document.getElementById("edit-bio-text").value = bioEl.textContent;
   editModal.classList.remove("hidden");
+  editModal.classList.add("flex");
 });
 
-cancelEditBtn?.addEventListener("click", () => editModal.classList.add("hidden"));
+cancelEditBtn?.addEventListener("click", () => {
+  editModal.classList.add("hidden");
+  editModal.classList.remove("flex");
+});
 
 editForm?.addEventListener("submit", async (e) => {
   e.preventDefault();

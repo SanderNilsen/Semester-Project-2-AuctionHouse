@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
   </head>
-  <body class="bg-body">
+  <body class="bg-gradient-to-b from-body to-tertiary">
     <header class="bg-tertiary">
       <div class="max-w-340 mx-auto">
         <div class="pt-8 pb-6 pl-4 pr-4 flex items-center justify-between relative">
@@ -46,17 +46,9 @@
               >
                 <span id="credits-text"></span>
               </div>
-
-              <button
-                id="sign-in-button"
-                class="hidden text-primary mt-1 hover:underline cursor-pointer"
-              >
-                Sign In
-              </button>
-
               <div
                 id="profile-menu"
-                class="hidden absolute right-0 mt-2 w-max bg-white border border-gray-200 rounded-lg shadow-lg z-50 overflow-hidden"
+                class="hidden absolute right-0 mt-18 w-max bg-white border border-gray-200 rounded-lg shadow-lg z-50 overflow-hidden"
               >
                 <a
                   href="profile.html"
@@ -71,6 +63,12 @@
                   Log Out
                 </button>
               </div>
+              <button
+                id="sign-in-button"
+                class="hidden text-primary mt-1 hover:underline cursor-pointer"
+              >
+                Sign In
+              </button>
             </div>
           </div>
         </div>
@@ -108,19 +106,19 @@
             type="text"
             id="search-input"
             placeholder="Search by title..."
-            class="flex-1 px-4 py-2 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-secondary"
+            class="flex-1 px-4 py-2 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-secondary hover:ring-2 hover:ring-secondary"
           />
 
           <button
             id="search-button"
-            class="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-primary text-sm"
+            class="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-primary text-sm cursor-pointer"
           >
             Search
           </button>
 
           <select
             id="sort-select"
-            class="text-sm px-2 py-2 bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary"
+            class="text-sm px-2 py-2 bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary cursor-pointer"
           >
             <option value="newest">Newest</option>
             <option value="endingSoon">Ending Soon</option>

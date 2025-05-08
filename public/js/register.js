@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
     errorMsg.textContent = "";
     spinner.classList.remove("hidden");
+    spinner.classList.add("flex");
 
     const username = document.getElementById("username").value.trim();
     const email = document.getElementById("email").value.trim();
@@ -22,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
       errorMsg.textContent = error.message;
     } finally {
       spinner.classList.add("hidden");
+      spinner.classList.remove("flex");
     }
   });
 });

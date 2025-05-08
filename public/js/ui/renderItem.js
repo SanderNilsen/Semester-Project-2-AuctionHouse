@@ -39,7 +39,7 @@ export function renderItem(auction) {
             alt="${sellerName}"
             class="w-8 h-8 rounded-full mr-2"
           />
-          <p class="text-secondary">${sellerName}</p>
+          <p class="text-secondary hover:text-primary">${sellerName}</p>
           </a>
         </div>
         <div class="text-right">

@@ -75,13 +75,13 @@ function renderAuctionCard(auction, isLoggedIn) {
         />
         <p class="text-sm font-light">${sellerName}</p>
       </a>
-      <p class="text-primary truncate mt-2">${description}</p>
+      <p class="truncate mt-2">${description}</p>
       <button
         class="bg-secondary text-white px-4 py-2 rounded-lg mt-2 w-full cursor-pointer hover:bg-primary ${!isLoggedIn ? 'opacity-50 cursor-not-allowed' : ''}"
         ${!isLoggedIn ? 'disabled' : ''}
         data-id="${id}"
       >
-        ${isLoggedIn ? 'View Details / Bid' : 'Login to Bid'}
+        ${isLoggedIn ? 'View Details' : 'Login to Bid'}
       </button>
     </div>
   `;
