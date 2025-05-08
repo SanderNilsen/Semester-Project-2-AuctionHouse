@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
     errorMsg.textContent = "";
     spinner.classList.remove("hidden");
+    spinner.classList.add("flex");
 
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
@@ -51,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } finally {
       spinner.classList.add("hidden");
+      spinner.classList.remove("flex");
     }
   });
 
