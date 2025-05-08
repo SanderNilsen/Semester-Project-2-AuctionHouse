@@ -22,6 +22,13 @@ A functional auction platform where users can buy and sell items using a credit-
 - **CSS Framework:** [Tailwind CSS v4.0](https://tailwindcss.com/docs/installation/tailwind-cli)
 - **Frontend Build Tool:** [Vite](https://vite.dev/) 
 
+## API
+
+This project uses the [Noroff Auction API (v2)](https://docs.noroff.dev/docs/v2/auction-house/listings) as the backend for:
+- User Authentication & Registration
+- Auction Listings (Create, Read, Update, Delete)
+- Bidding System
+
 ## Setup Instructions
 
 ### 1. Clone the Repository
@@ -58,8 +65,8 @@ npm run preview
 ```
 ## Deployment
 This project is deployed to [Netlify](https://semester-project-2-auctionhouse.netlify.app/index.html). The build settings are:
-* **Build Command:** npm run build
-* **Publish Directory:** dist
+- **Build Command:** npm run build
+- **Publish Directory:** dist
 
 **Note:** Make sure your Netlify environment variable VITE_API_KEY is set in the dashboard.
 
