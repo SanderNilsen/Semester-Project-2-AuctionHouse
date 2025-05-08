@@ -1,5 +1,7 @@
 # Semester-Project-2 – Auction House
 
+<img src="public/images/Website-Design -AH.png">
+
 A functional auction platform where users can buy and sell items using a credit-based system. New users receive 1,000 credits upon registration, which they can use to bid on items. Additional credits are earned by selling items.
 
 ## Features
@@ -63,6 +65,7 @@ To preview the production build:
 ```bash
 npm run preview
 ```
+
 ## Deployment
 This project is deployed to [Netlify](https://semester-project-2-auctionhouse.netlify.app/index.html). The build settings are:
 - **Build Command:** npm run build
@@ -70,3 +73,32 @@ This project is deployed to [Netlify](https://semester-project-2-auctionhouse.ne
 
 **Note:** Make sure your Netlify environment variable VITE_API_KEY is set in the dashboard.
 
+## Testing Instructions
+
+### 1. Run Unit Tests (Vitest)
+
+This project uses Vitest and jsdom for unit testing.
+
+Run all unit tests:
+```bash
+npm run test
+```
+
+Run tests in watch mode:
+```bash
+npm run test:watch
+```
+
+### 2. Run E2E Tests (Playwright)
+
+This project uses Playwright for end-to-end browser testing.
+
+Run E2E tests:
+```bash
+npm run test:e2e
+```
+
+To open the last generated HTML test report:
+```bash
+npx playwright show-report
+```

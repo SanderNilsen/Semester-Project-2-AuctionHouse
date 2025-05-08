@@ -46,7 +46,7 @@ function renderAuctionCard(auction, isLoggedIn) {
   const endsDate = formatDate(endsAt);
 
   return `
-    <div class="bg-white p-4 rounded-lg shadow-lg">
+    <div id="user-listing" class="bg-white p-4 rounded-lg shadow-lg">
       <div class="relative">
         <img
           src="${imageUrl}"
