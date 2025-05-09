@@ -24,6 +24,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     listingsSection?.scrollIntoView({ behavior: "smooth" });
   });
 
+  /**
+   * Handles the search functionality for auction listings.
+   * Filters the auctions based on the search input and updates the UI.
+   *
+   * @function handleSearch
+   * @throws {Error} Logs an error if filtering or rendering fails.
+   */
   function handleSearch() {
     const term = searchInput.value.trim().toLowerCase();
     spinner.classList.remove("hidden");

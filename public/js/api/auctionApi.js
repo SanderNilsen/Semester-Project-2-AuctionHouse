@@ -2,6 +2,19 @@ import { API_BASE, API_LISTINGS } from "../utils/constants.js";
 import { headers } from "./headers.js";
 import { getAuthToken } from "../utils/authStorage.js";
 
+/**
+ * Creates a new auction listing.
+ *
+ * @async
+ * @function createListing
+ * @param {Object} listing - The listing details.
+ * @param {string} listing.title - The title of the auction listing.
+ * @param {string} listing.description - The description of the auction listing.
+ * @param {string} listing.media - The URL of the media image.
+ * @param {string} listing.endsAt - The end date/time of the auction in ISO format.
+ * @returns {Promise<Object>} The created listing data from the API.
+ * @throws {Error} If the API request fails, throws an error with the message from the response or a default error message.
+ */
 export async function createListing({ title, description, media, endsAt }) {
   const token = getAuthToken();
   const body = { title, description, media: [{ url: media, alt: title }], endsAt };

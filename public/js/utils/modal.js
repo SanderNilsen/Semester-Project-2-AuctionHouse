@@ -15,6 +15,17 @@ const deleteButton = document.getElementById("delete-listing-button");
 const cancelButton = document.getElementById("cancel-listing");
 const openButtons = document.querySelectorAll("#new-listing-btn, #list-item-btn");
 
+/**
+ * Opens the modal for creating or editing a listing.
+ *
+ * @function openModal
+ * @param {boolean} [isEdit=false] - Indicates if the modal is in edit mode.
+ * @param {Object} [listing={}] - The listing data to pre-fill in edit mode.
+ * @param {string} [listing.id] - The ID of the listing.
+ * @param {string} [listing.title] - The title of the listing.
+ * @param {string} [listing.description] - The description of the listing.
+ * @param {Array} [listing.media] - An array of media objects associated with the listing.
+ */
 function openModal(isEdit = false, listing = {}) {
   editingListingId = isEdit ? listing.id : null;
   formElement.reset();
